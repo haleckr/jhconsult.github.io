@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JHconsult – Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1220;
+      --bg2:#0f1a30;
+      --surface:#ffffff;
+      --text:#0f172a;
+      --muted:#6b7280;
+      --accent:#3b82f6;
+      --accent2:#1d4ed8;
+      --ring: rgba(59, 130, 246, .25);
+      --shadow: 0 14px 44px rgba(2,6,23,.18);
+      --radius: 18px;
+      --max: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: #f6f8fc;
+      color: var(--text);
+      line-height:1.65;
+    }
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+    a{color:inherit}
+
+    /* Top / Hero */
+    header{
+      position:relative;
+      overflow:hidden;
+      color:#fff;
+      background:
+        radial-gradient(900px 380px at 15% 10%, rgba(59,130,246,.35), transparent 60%),
+        radial-gradient(900px 420px at 85% 0%, rgba(29,78,216,.25), transparent 55%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
+    }
+    header:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(700px 260px at 30% 90%, rgba(255,255,255,.10), transparent 65%);
+      pointer-events:none;
+    }
+    .topbar{
+      position:relative;
+      padding:22px 0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width: 240px;
+    }
+    .logo{
+      width:46px;height:46px;border-radius:16px;
+      background: linear-gradient(135deg, rgba(59,130,246,1), rgba(29,78,216,1));
+      box-shadow: 0 16px 50px rgba(59,130,246,.25);
+      display:grid;
+      place-items:center;
+      border: 1px solid rgba(255,255,255,.18);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo:after{
+      content:"";
+      position:absolute;
+      width:120%;
+      height:120%;
+      left:-30%;
+      top:-30%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 45%);
+      transform: rotate(12deg);
+      opacity:.9;
+    }
+    .logo span{
+      position:relative;
+      font-weight:900;
+      letter-spacing:-1px;
+      font-size:18px;
+    }
+    .brandTitle{
+      display:flex;
+      flex-direction:column;
+      line-height:1.05;
+    }
+    .brandTitle .name{
+      font-weight:900;
+      font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+      letter-spacing: -1.2px;
+      text-transform: none;
+    }
+    .brandTitle .sub{
+      margin-top:6px;
+      font-weight:600;
+      font-size:.95rem;
+      opacity:.85;
+    }
+    nav a{
+      text-decoration:none;
+      color:#fff;
+      opacity:.9;
+      font-weight:700;
+      margin-left:18px;
+    }
+    nav a:hover{opacity:1; text-decoration:underline}
+
+    .hero{
+      position:relative;
+      padding: 46px 0 76px;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:28px;
+      align-items:center;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.16);
+      backdrop-filter: blur(10px);
+      font-weight:700;
+      opacity:.98;
+      margin-bottom:16px;
+    }
+    .hero h1{
+      margin:0 0 14px;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height:1.05;
+      letter-spacing:-1.2px;
+    }
+    .hero p{
+      margin:0 0 20px;
+      font-size:1.06rem;
+      opacity:.92;
+      max-width: 70ch;
+    }
+    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:4px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 16px; border-radius:14px;
+      font-weight:800; text-decoration:none;
+      border:1px solid transparent;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    .btn.primary{
+      background:#fff;
+      color: #0b1220;
+      box-shadow: 0 18px 50px rgba(0,0,0,.20);
+    }
+    .btn.primary:hover{transform: translateY(-1px)}
+    .btn.ghost{
+      background: rgba(255,255,255,.10);
+      border-color: rgba(255,255,255,.18);
+      color:#fff;
+    }
+    .btn.ghost:hover{background: rgba(255,255,255,.14)}
+
+    .heroCard{
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: var(--radius);
+      padding: 18px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 18px 55px rgba(0,0,0,.22);
+    }
+    .metric{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      padding:14px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      margin-top: 12px;
+    }
+    .metric b{font-size:1.05rem}
+    .metric span{opacity:.9; font-weight:600; font-size:.95rem}
+
+    /* Main */
+    main{padding: 44px 0 72px}
+    .section{margin-top: 46px;}
+    .section h2{
+      margin:0 0 12px;
+      font-size: clamp(1.4rem, 2.3vw, 1.9rem);
+      letter-spacing:-.35px;
+    }
+    .lead{color: var(--muted); margin:0 0 18px; max-width: 82ch}
+    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap: 18px;}
+    .card{
+      grid-column: span 4;
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(15,23,42,.06);
+    }
+    .tag{
+      display:inline-flex;
+      font-size:.85rem;
+      font-weight:800;
+      color: #0b1220;
+      background: rgba(59,130,246,.16);
+      padding:6px 10px;
+      border-radius:999px;
+      margin-bottom: 10px;
+    }
+    .card h3{margin: 0 0 10px; font-size: 1.1rem; letter-spacing: -.2px;}
+    ul{margin: 10px 0 0; padding-left: 18px; color: #334155;}
+    li{margin: 7px 0;}
+
+    .twoCol{
+      grid-column: span 6;
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(15,23,42,.06);
+    }
+    .callout{
+      display:flex; gap:14px; align-items:flex-start;
+      padding: 18px; border-radius: 16px;
+      background: linear-gradient(180deg, rgba(59,130,246,.12), rgba(59,130,246,.06));
+      border: 1px solid rgba(59,130,246,.20);
+      box-shadow: 0 12px 34px rgba(59,130,246,.10);
+    }
+    .icon{
+      width: 42px; height: 42px; border-radius: 14px;
+      display:grid; place-items:center;
+      background: rgba(59,130,246,.14);
+      border: 1px solid rgba(59,130,246,.22);
+      flex: 0 0 auto;
+      color: #0b1220;
+    }
+    .icon svg{width:22px;height:22px}
+
+    .contact{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .box{
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(15,23,42,.06);
+    }
+    .box small{color: var(--muted); font-weight:800; letter-spacing:.2px}
+    .box a{
+      display:block;
+      font-weight:900;
+      text-decoration:none;
+      margin-top: 8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      outline: none;
+      color: #0b1220;
+      background: rgba(15,23,42,.03);
+    }
+    .box a:hover{background: rgba(59,130,246,.12)}
+    .box a:focus{box-shadow: 0 0 0 6px var(--ring)}
+
+    .divider{height:1px; background: rgba(15,23,42,.10); margin: 34px 0 18px;}
+    .foot{
+      padding: 34px 0 46px;
+      color: rgba(255,255,255,.78);
+      font-size: .92rem;
+      border-top: 1px solid rgba(255,255,255,.10);
+      margin-top: 30px;
+    }
+    .foot small{display:block; opacity:.85; margin-top:6px}
+
+    @media (max-width: 860px){
+      .hero{grid-template-columns: 1fr; padding: 40px 0 60px}
+      nav{display:none}
+      .card{grid-column: span 12}
+      .twoCol{grid-column: span 12}
+      .contact{grid-template-columns: 1fr}
+      .brand{min-width: unset}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand" aria-label="Značka">
+          <div class="logo" aria-hidden="true"><span>JH</span></div>
+          <div class="brandTitle">
+            <div class="name">JHconsult</div>
+            <div class="sub">Consulting • Nákup • Sklad • Procesy</div>
+          </div>
+        </div>
+        <nav aria-label="Hlavná navigácia">
+          <a href="#sluzby">Služby</a>
+          <a href="#pristup">Ako pracujem</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+      </div>
+
+      <div class="hero">
+        <div>
+          <div class="pill">Zlepšenie procesov • úspora nákladov • prehľad v zásobách</div>
+          <h1>Pomôžem vám nastaviť procesy, ktoré fungujú aj v praxi.</h1>
+          <p>
+            Optimalizujem nákupné a skladové procesy tak, aby boli jednoduché, prehľadné a kontrolovateľné.
+            Cieľom je menej chýb, lepšie dáta, rýchlejší tok tovaru a jasné pravidlá pre tím.
+          </p>
+          <div class="cta">
+            <a class="btn primary" href="#kontakt">Kontaktovať</a>
+            <a class="btn ghost" href="#sluzby">Pozrieť služby</a>
+          </div>
+        </div>
+
+        <aside class="heroCard" aria-label="Rýchly prehľad">
+          <div class="metric">
+            <b>Rýchla diagnostika</b>
+            <span>čo brzdí proces a kde vzniká chaos</span>
+          </div>
+          <div class="metric">
+            <b>Jednoduchý plán zmien</b>
+            <span>kroky, ktoré sa dajú zaviesť postupne</span>
+          </div>
+          <div class="metric">
+            <b>Merateľný výsledok</b>
+            <span>prehľad, úspora času a nákladov</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+
+      <section class="section" id="sluzby">
+        <h2>Služby</h2>
+        <p class="lead">
+          Zameranie: zlepšenie procesov od objednávky až po výdaj zo skladu – jednoducho, bez zbytočnej teórie.
+        </p>
+
+        <div class="grid">
+          <article class="card">
+            <div class="tag">Nákup</div>
+            <h3>Nákupné procesy</h3>
+            <ul>
+              <li>analýza nákupného toku a schvaľovania</li>
+              <li>nastavenie pravidiel (MOQ, cenové hladiny, zodpovednosti)</li>
+              <li>optimalizácia dodávateľov a objednávok</li>
+              <li>kontrola nákupných nákladov a rizík</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="tag">Sklad</div>
+            <h3>Skladové procesy</h3>
+            <ul>
+              <li>tok tovaru: príjem → sklad → výdaj</li>
+              <li>optimalizácia zásob a obrátkovosti</li>
+              <li>zníženie chýb (označovanie, lokácie, pravidlá)</li>
+              <li>prehľadné reporty a jednoduché KPI</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="tag">Procesy</div>
+            <h3>Procesné poradenstvo</h3>
+            <ul>
+              <li>identifikácia slabých miest a úzkych hrdiel</li>
+              <li>zjednodušenie postupov a jasné zodpovednosti</li>
+              <li>prepojenie nákupu so skladom a predajom</li>
+              <li>nastavenie kontrolných bodov</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="pristup">
+        <h2>Ako pracujem</h2>
+        <p class="lead">
+          Zameriavam sa na reálne fungovanie firmy. Najprv identifikujem problém, potom nastavím jednoduché kroky a pomôžem s implementáciou.
+        </p>
+
+        <div class="grid">
+          <div class="twoCol">
+            <div class="callout">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 20a8 8 0 1 0-8-8 8 8 0 0 0 8 8Z" stroke="currentColor" stroke-width="2"/>
+                  <path d="M12 8v4l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div>
+                <b>Diagnostika</b>
+                <div class="lead" style="margin:6px 0 0">Krátka analýza procesov a dát (kde sa stráca čas, peniaze a prehľad).</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="twoCol">
+            <div class="callout">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20 7 10 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div>
+                <b>Návrh riešenia</b>
+                <div class="lead" style="margin:6px 0 0">Konkrétne kroky + pravidlá, ktoré sú zrozumiteľné pre tím a dajú sa zaviesť rýchlo.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="twoCol">
+            <div class="callout">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <b>Implementácia</b>
+                <div class="lead" style="margin:6px 0 0">Pomoc pri zavedení do praxe (nastavenie rolí, šablón, kontrolných bodov).</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="twoCol">
+            <div class="callout">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 19V5m0 14h16M8 17V9m4 8V7m4 10v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <b>Stabilizácia</b>
+                <div class="lead" style="margin:6px 0 0">Kontrola po zavedení + jednoduché KPI, aby sa systém udržal a zlepšoval.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="kontakt">
+        <h2>Kontakt</h2>
+        <p class="lead">Napíšte alebo zavolajte – krátko si prejdeme situáciu a navrhnem ďalší krok.</p>
+
+        <div class="contact">
+          <div class="box">
+            <small>TELEFÓN</small>
+            <a href="tel:+421944476041">+421 944 476 041</a>
+          </div>
+          <div class="box">
+            <small>EMAIL</small>
+            <a href="mailto:janna.halecka@gmail.com">janna.halecka@gmail.com</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer style="background: linear-gradient(135deg, var(--bg), var(--bg2)); color:#fff;">
+    <div class="wrap">
+      <div class="foot">
+        <div><b>Jana Halecká</b> • IČO: 5329226</div>
+        <small>+421 944 476 041 • jhconsult@gmail.com</small>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
